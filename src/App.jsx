@@ -47,114 +47,115 @@ function App() {
           <Route path="/">
             <Route index element={<Home />}></Route>
             <Route path="login" element={<Login />}></Route>
+
             <Route path="tengah">
               <Route index element={<RequireAuth><List columns={tengahColumns} /></RequireAuth>}></Route>
-              <Route path=":tengahId" element={<RequireAuth><Single columns={tengahColumns} /></RequireAuth>}></Route>
+              <Route path="/tengah/:id" element={<RequireAuth><Single columns={tengahColumns} /></RequireAuth>}></Route>
               <Route 
                 path="new" element={<New inputs={userInputs} title="ADD NEW" />}
               />
             </Route>
             <Route path="utara">
               <Route index element={<RequireAuth><Listutara columns={utaraColumns} /></RequireAuth>}></Route>
-              <Route path=":utaraId" element={<RequireAuth><Single columns={utaraColumns} /></RequireAuth>}></Route>
+              <Route path="/utara/:id" element={<RequireAuth><Single columns={utaraColumns} /></RequireAuth>}></Route>
               <Route 
                 path="new" element={<New inputs={utaraInputs} title="ADD NEW" />}
               />
             </Route>
             <Route path="selatan">
               <Route index element={<RequireAuth><Listselatan columns={selatanColumns} /></RequireAuth>}></Route>
-              <Route path=":selatanId" element={<RequireAuth><Single columns={selatanColumns} /></RequireAuth>}></Route>
+              <Route path=":id" element={<RequireAuth><Single columns={selatanColumns} /></RequireAuth>}></Route>
               <Route 
                 path="new" element={<New inputs={selatanInputs} title="ADD NEW" />}
               />
             </Route>
             <Route path="timur">
               <Route index element={<RequireAuth><Listtimur columns={timurColumns} /></RequireAuth>}></Route>
-              <Route path=":timurId" element={<RequireAuth><Single columns={timurColumns} /></RequireAuth>}></Route>
+              <Route path=":id" element={<RequireAuth><Single columns={timurColumns} /></RequireAuth>}></Route>
               <Route 
                 path="new" element={<New inputs={timurInputs} title="ADD NEW" />}
               />
             </Route>
             <Route path="barat">
               <Route index element={<RequireAuth><Listbarat columns={baratColumns} /></RequireAuth>}></Route>
-              <Route path=":baratId" element={<RequireAuth><Single columns={baratColumns} /></RequireAuth>}></Route>
+              <Route path="/barat/:id" element={<RequireAuth><Single columns={baratColumns} /></RequireAuth>}></Route>
               <Route 
                 path="new" element={<New inputs={baratInputs} title="ADD NEW" />}
               />
             </Route>
             <Route path="genuk">
               <Route index element={<RequireAuth><Listgenuk columns={genukColumns} /></RequireAuth>}></Route>
-              <Route path=":genukId" element={<RequireAuth><Single columns={genukColumns} /></RequireAuth>}></Route>
+              <Route path=":id" element={<RequireAuth><Single columns={genukColumns} /></RequireAuth>}></Route>
               <Route 
                 path="new" element={<New inputs={genukInputs} title="ADD NEW" />}
               />
             </Route>
             <Route path="tembalang">
               <Route index element={<RequireAuth><Listtembalang columns={tembalangColumns} /></RequireAuth>}></Route>
-              <Route path=":tembalangId" element={<RequireAuth><Single columns={tembalangColumns} /></RequireAuth>}></Route>
+              <Route path=":id" element={<RequireAuth><Single columns={tembalangColumns} /></RequireAuth>}></Route>
               <Route 
                 path="new" element={<New inputs={tembalangInputs} title="ADD NEW" />}
               />
             </Route>
             <Route path="pedurungan">
               <Route index element={<RequireAuth><Listpedurungan columns={pedurunganColumns} /></RequireAuth>}></Route>
-              <Route path=":pedurunganId" element={<RequireAuth><Single columns={pedurunganColumns} /></RequireAuth>}></Route>
+              <Route path=":id" element={<RequireAuth><Single columns={pedurunganColumns} /></RequireAuth>}></Route>
               <Route 
                 path="new" element={<New inputs={pedurunganInputs} title="ADD NEW" />}
               />
             </Route>
             <Route path="candisari">
               <Route index element={<RequireAuth><Listcandisari columns={candisariColumns} /></RequireAuth>}></Route>
-              <Route path=":candisariId" element={<RequireAuth><Single columns={candisariColumns} /></RequireAuth>}></Route>
+              <Route path=":id" element={<RequireAuth><Single columns={candisariColumns} /></RequireAuth>}></Route>
               <Route 
                 path="new" element={<New inputs={candisariInputs} title="ADD NEW" />}
               />
             </Route>
             <Route path="gajahmungkur">
               <Route index element={<RequireAuth><Listgajahmungkur columns={gajahmungkurColumns} /></RequireAuth>}></Route>
-              <Route path=":gajahmungkurId" element={<RequireAuth><Single columns={gajahmungkurColumns} /></RequireAuth>}></Route>
+              <Route path="/gajahmungkur/:id" element={<RequireAuth><Single columns={gajahmungkurColumns} /></RequireAuth>}></Route>
               <Route 
                 path="new" element={<New inputs={gajahmungkurInputs} title="ADD NEW" />}
               />
             </Route>
             <Route path="banyumanik">
               <Route index element={<RequireAuth><Listbanyumanik columns={banyumanikColumns} /></RequireAuth>}></Route>
-              <Route path=":banyumanikId" element={<RequireAuth><Single columns={banyumanikColumns} /></RequireAuth>}></Route>
+              <Route path="/banyumanik/:id" element={<RequireAuth><Single columns={banyumanikColumns} /></RequireAuth>}></Route>
               <Route 
                 path="new" element={<New inputs={banyumanikInputs} title="ADD NEW" />}
               />
             </Route>
             <Route path="gunungpati">
               <Route index element={<RequireAuth><Listgunungpati columns={gunungpatiColumns} /></RequireAuth>}></Route>
-              <Route path=":gunungpatiId" element={<RequireAuth><Single columns={gunungpatiColumns} /></RequireAuth>}></Route>
+              <Route path=":id" element={<RequireAuth><Single columns={gunungpatiColumns} /></RequireAuth>}></Route>
               <Route 
                 path="new" element={<New inputs={gunungpatiInputs} title="ADD NEW" />}
               />
             </Route>
             <Route path="dinas">
               <Route index element={<RequireAuth><Listdinas columns={dinasColumns} /></RequireAuth>}></Route>
-              <Route path=":dinasId" element={<RequireAuth><Single columns={dinasColumns} /></RequireAuth>}></Route>
+              <Route path="/dinas/:id" element={<RequireAuth><Single columns={dinasColumns} /></RequireAuth>}></Route>
               <Route 
                 path="new" element={<New inputs={dinasInputs} title="ADD NEW" />}
               />
             </Route>
             <Route path="tugu">
               <Route index element={<RequireAuth><Listtugu columns={tuguColumns} /></RequireAuth>}></Route>
-              <Route path=":tuguId" element={<RequireAuth><Single columns={tuguColumns} /></RequireAuth>}></Route>
+              <Route path=":id" element={<RequireAuth><Single columns={tuguColumns} /></RequireAuth>}></Route>
               <Route 
                 path="new" element={<New inputs={tuguInputs} title="ADD NEW" />}
               />
             </Route>
             <Route path="mijen">
               <Route index element={<RequireAuth><Listmijen columns={mijenColumns} /></RequireAuth>}></Route>
-              <Route path=":mijenId" element={<RequireAuth><Single columns={mijenColumns} /></RequireAuth>}></Route>
+              <Route path=":id" element={<RequireAuth><Single columns={mijenColumns} /></RequireAuth>}></Route>
               <Route 
                 path="new" element={<New inputs={mijenInputs} title="ADD NEW" />}
               />
             </Route>
             <Route path="ngaliyan">
               <Route index element={<RequireAuth><Listngaliyan columns={ngaliyanColumns} /></RequireAuth>}></Route>
-              <Route path=":ngaliyanId" element={<RequireAuth><Single columns={ngaliyanColumns} /></RequireAuth>}></Route>
+              <Route path=":id" element={<RequireAuth><Single columns={ngaliyanColumns} /></RequireAuth>}></Route>
               <Route 
                 path="new" element={<New inputs={ngaliyanInputs} title="ADD NEW" />}
               />

@@ -2,7 +2,7 @@ import "./home.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Widget from "../../components/widget/Widget";
-import Datatabletengah from "../../components/datatabletengah/Datatabletengah";
+
 
 const Home = () => {
   return (

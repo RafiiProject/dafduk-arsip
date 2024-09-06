@@ -1,33 +1,44 @@
 import "./single.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import List from "../../components/datatabledinas/Datatabledinas";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 const Single = () => {
-  const { id } = useParams(); // Assuming you're passing the document ID as a URL parameter
+  const { collection, id } = useParams(); // Mengambil 'collection' dan 'id' dari URL
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const docRef = doc(db, "yourCollectionName", id); // Replace 'yourCollectionName' with your actual collection name
+    const fetchDocument = async () => {
+      const collections = ["tengah", "dinas", "banyumanik", "barat", "gajahmungkur", "utara"]; // Nama koleksi
+      let documentFound = null;
+    
+      for (const collectionName of collections) {
+        const docRef = doc(db, collectionName, id);
         const docSnap = await getDoc(docRef);
+    
         if (docSnap.exists()) {
-          setData(docSnap.data());
-        } else {
-          console.log("No such document!");
+          documentFound = docSnap.data(); // Dokumen ditemukan
+          break;
         }
-      } catch (error) {
-        console.error("Error fetching document:", error);
+      }
+    
+      if (documentFound) {
+        setData(documentFound);
+      } else {
+        console.error("Dokumen tidak ditemukan di koleksi manapun!");
       }
     };
 
-    fetchData();
-  }, [id]);
+    fetchDocument();
+  }, [collection, id]);
+
+  if (!data) {
+    return <p>Loading...</p>;
+  }
+
 
   return (
     <div className="single">
@@ -37,32 +48,32 @@ const Single = () => {
         <div className="left">
           <div className="item">
             <div className="details">
-              <h1 className="itemTitle">{data?.name || "Name not available"}</h1>
+              <h1 className="itemTitle">{data.nama || "Nama tidak tersedia"}</h1>
+
               <div className="detailItem">
-                <span className="itemKey">Email:</span>
-                <span className="itemValue">{data?.email || "Email not available"}</span>
+                <span className="itemKey">NIK:  </span>
+                <span className="itemValue">{data.nik || "NIK tidak tersedia"}</span>
               </div>
+
               <div className="detailItem">
-                <span className="itemKey">Phone:</span>
-                <span className="itemValue">{data?.phone || "Phone not available"}</span>
+                <span className="itemKey">Keterangan: </span>
+                <span className="itemValue">{data.keterangan || "Keterangan tidak tersedia"}</span>
               </div>
+
               <div className="detailItem">
-                <span className="itemKey">Address:</span>
-                <span className="itemValue">{data?.address || "Address not available"}</span>
+                <span className="itemKey">Tanggal:  </span>
+                <span className="itemValue">{data.tanggal || "Tanggal tidak tersedia"}</span>
               </div>
+
               <div className="detailItem">
-                <span className="itemKey">Country:</span>
-                <span className="itemValue">{data?.country || "Country not available"}</span>
-              </div>
-              <div className="detailItem">
-                <span className="itemKey">PDF File:</span>
+                <span className="itemKey">PDF File: </span>
                 <span className="itemValue">
                   {data?.fileUrl ? (
                     <a href={data.fileUrl} target="_blank" rel="noopener noreferrer">
-                      View PDF
+                      Lihat PDF
                     </a>
                   ) : (
-                    "No PDF uploaded"
+                    "Tidak ada file PDF yang diunggah"
                   )}
                 </span>
               </div>
