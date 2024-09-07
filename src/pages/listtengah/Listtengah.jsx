@@ -1,7 +1,7 @@
 import "./listtengah.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import Datatabletengah from "../../components/datatabletengah/Datatabletengah";
+import Datatabletengah from "../../components/datatabletengah/datatabletengah";
 
 const Listtengah = ({columns}) => {
   return (
