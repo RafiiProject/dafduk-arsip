@@ -181,9 +181,7 @@ const Datatablebanyumanik = () => {
     },
   ];
 
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
-  };
+
 
   return (
     <div id="banyumanik" className="datatablebanyumanik">

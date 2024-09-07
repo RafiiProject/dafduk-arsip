@@ -1,58 +1,102 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebase"; // Sesuaikan dengan path Firebase kamu
+import "./new.scss";
+import Sidebar from "../../components/sidebar/Sidebar";
+import Navbar from "../../components/navbar/Navbar";
+import { useState } from "react"; 
+import { doc, serverTimestamp, setDoc, addDoc, collection } from "firebase/firestore";
+import { auth, db } from "../../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth"; 
+import { useNavigate, useLocation } from "react-router-dom";
 
-const Single = ({ columns }) => {
-  const { id } = useParams();
-  const [data, setData] = useState(null);
+const New = ({ inputs, title }) => {
+  const [file, setFile] = useState("");  
+  const [data, setData] = useState({});
+  const [dropdownValue, setDropdownValue] = useState(""); // State untuk dropdown
 
-  useEffect(() => {
-    const fetchPdf = async () => {
-      console.log("ID dari URL:", id); // Debug ID
+  const navigate = useNavigate();
+  const location = useLocation(); 
+  const type = location.pathname.split('/')[1]; 
 
-      if (id) { // Pastikan ID ada
-        try {
-          const docRef = doc(db, "pdfs", id); // Ganti "pdfs" dengan nama koleksi yang sesuai
-          const docSnap = await getDoc(docRef);
+  const handleDropdownChange = (e) => {
+    setDropdownValue(e.target.value);
+  };
 
-          if (docSnap.exists()) {
-            setData(docSnap.data());
-          } else {
-            console.error("No such document!");
-            // Handle jika dokumen tidak ditemukan
-          }
-        } catch (error) {
-          console.error("Error fetching document:", error);
-        }
+  const handleInput = (e) => {
+    const id = e.target.id;
+    const value = e.target.value;
+
+    setData({ ...data, [id]: value });
+  };
+
+  const handleAdd = async (e) => {
+    e.preventDefault();
+    try {
+      const newData = {
+        ...data,
+        keterangan: dropdownValue, // Tambahkan dropdownValue ke objek data
+        timeStamp: serverTimestamp(),
+      };
+
+      if (type === "users") {
+        const res = await createUserWithEmailAndPassword(
+          auth,
+          data.email,
+          data.password
+        );
+        await setDoc(doc(db, type, res.user.uid), newData); // Gunakan newData di sini
       } else {
-        console.error("ID tidak ditemukan!");
-        // Handle jika ID tidak ada
+        await addDoc(collection(db, type), newData); // Gunakan newData di sini
       }
-    };
 
-    fetchPdf();
-  }, [id]);
+      navigate(-1);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
-    <div>
-      {data ? (
-        <div>
-          <h1>{data.title}</h1>
-          {/* Render data di sini */}
-          {data.fileUrl && (
-            <iframe
-              src={data.fileUrl}
-              style={{ width: '100%', height: '600px' }}
-              title="PDF Viewer"
-            />
-          )}
+    <div className="new">
+      <Sidebar />
+      <div className="newContainer">
+        <Navbar />
+        <div className="top">
+          <h1>{title}</h1>
         </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+        <div className="bottom">
+          <div className="right">
+            <form onSubmit={handleAdd}>
+              {inputs.map((input) => (
+                <div className="formInput" key={input.id}>
+                  <label>{input.label}</label>
+                  {input.type === "select" ? (
+                    <select
+                      name={input.label}
+                      value={dropdownValue}
+                      onChange={handleDropdownChange}
+                    >
+                      <option value="">Pilih {input.label}</option>
+                      {input.options.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <input 
+                      type={input.type} 
+                      placeholder={input.placeholder} 
+                      id={input.id} 
+                      onChange={handleInput} 
+                    />
+                  )}
+                </div>
+              ))}
+              <button type="submit">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Single;
+export default New;
