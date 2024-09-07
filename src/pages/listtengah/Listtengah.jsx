@@ -1,9 +1,9 @@
-import "./list.scss";
+import "./listtengah.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Datatabletengah from "../../components/datatabletengah/Datatabletengah";
 
-const List = ({columns}) => {
+const Listtengah = ({columns}) => {
   return (
     <div className="list">
       <Sidebar />
@@ -15,4 +15,4 @@ const List = ({columns}) => {
   );
 };
 
-export default List;
+export default Listtengah;

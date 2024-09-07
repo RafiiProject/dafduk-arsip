@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
-import List from "./pages/list/List";
+import Listtengah from "./pages/listtengah/Listtengah";
 import Listutara from "./pages/listutara/Listutara";
 import Listselatan from "./pages/listselatan/Listselatan";
 import Listtimur from "./pages/listtimur/Listtimur";
@@ -49,7 +49,7 @@ function App() {
             <Route path="login" element={<Login />}></Route>
 
             <Route path="tengah">
-              <Route index element={<RequireAuth><List columns={tengahColumns} /></RequireAuth>}></Route>
+              <Route index element={<RequireAuth><Listtengah columns={tengahColumns} /></RequireAuth>}></Route>
               <Route path="/tengah/:id" element={<RequireAuth><Single columns={tengahColumns} /></RequireAuth>}></Route>
               <Route 
                 path="new" element={<New inputs={userInputs} title="ADD NEW" />}
