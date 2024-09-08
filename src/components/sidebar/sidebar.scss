@@ -1,93 +1,118 @@
 .sidebar {
-    flex: 1;
-    border-right: 0.5px solid rgb(230, 227, 227);
-    min-height: 100vh;
-    background-color: white;
-  
-    .top {
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  
-      .logo {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  height: 110vh; /* Sidebar takes full height */
+  background-color: #fff; /* Background color for sidebar */
+  border-right: 1px solid #e0e0e0; /* Border to separate sidebar */
+
+  .top {
+    height: 60px; /* Adjusted height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fafafa; /* Light background */
+    border-bottom: 1px solid #e0e0e0; /* Divider between sections */
+    
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #7b3c08; /* Logo color */
+    }
+  }
+
+  hr {
+    margin: 10px 0;
+    border: 0;
+    border-top: 1px solid rgb(230, 227, 227);
+  }
+
+  a {
+    text-decoration: none; /* Remove underline */
+  }
+
+  .center {
+    padding-left: 15px; /* Adjust padding for layout */
+    
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      .title {
+        font-size: 12px;
+        font-weight: bold;
+        color: #999;
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+
+      .title1 {
         font-size: 20px;
         font-weight: bold;
-        color: #7b3c08;
+        color: #999;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        text-align: center;
+        text-decoration: underline;
+        text-underline-offset: 10px;
       }
-    }
-  
-    hr {
-      height: 0;
-      border: 0.5px solid rgb(230, 227, 227);
-    }
-    
-    a {
-      text-decoration: none;
-    }
-  
-    .center {
-      padding-left: 10px;
-  
-      ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-  
-        .title {
-          font-size: 10px;
-          font-weight: bold;
-          color: #999;
-          margin-top: 15px;
-          margin-bottom: 5px;
-        }
-  
-        li {
-          display: flex;
-          align-items: center;
-          padding: 5px;
-          cursor: pointer;
-  
-          &:hover {
-            background-color: #fde9dd;
-          }
-  
-          .icon {
-            font-size: 18px;
-            color: #7b3c08;
-          }
-  
-          span {
-            font-size: 13px;
-            font-weight: 600;
-            color: #888;
-            margin-left: 10px;
-          }
-        }
-      }
-    }
-  
-    .bottom {
-      display: flex;
-      align-items: center;
-      margin: 10px;
-  
-      .colorOption {
-        width: 20px;
-        height: 20px;
-        border-radius: 5px;
-        border: 1px solid #7b3c08;
+
+      li {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        border-radius: 5px; /* Rounded corners */
+        transition: background-color 0.3s ease; /* Smooth hover transition */
         cursor: pointer;
-        margin: 5px;
-  
-        &:nth-child(1) {
-          background-color: whitesmoke;
+
+        &:hover {
+          background-color: #fde9dd; /* Light hover effect */
         }
-  
-        &:nth-child(2) {
-          background-color: #333;
+
+        .icon {
+          font-size: 18px;
+          color: #7b3c08;
+        }
+
+        span {
+          font-size: 14px;
+          font-weight: 600;
+          color: #555;
+          margin-left: 15px;
         }
       }
     }
   }
-  
+
+  /* Active State Styling */
+  .menu-item.active {
+    background-color: #007bff; /* Highlight active menu item */
+    color: white; /* Text color for active item */
+    font-weight: bold; /* Bold text for active item */
+  }
+
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+
+    .colorOption {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%; /* Round buttons */
+      border: 1px solid #7b3c08;
+      cursor: pointer;
+      margin: 0 10px;
+
+      &:nth-child(1) {
+        background-color: whitesmoke;
+      }
+
+      &:nth-child(2) {
+        background-color: #333;
+      }
+    }
+  }
+}

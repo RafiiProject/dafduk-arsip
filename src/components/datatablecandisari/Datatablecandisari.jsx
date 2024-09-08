@@ -186,7 +186,7 @@ const Datatablecandisari = () => {
   };
 
   return (
-    <div id="candisari" className="datatable">candisari
+    <div id="candisari" className="datatablecandisari">
       <div className="datatablecandisariTitle">
         {type.toUpperCase()}
         <Link

@@ -10,7 +10,7 @@ const Navbar = () => {
     <div className="navbar">
       <div className="wrapper">
         <div className="search">
-          
+          SiPeta KTP
         </div>
         <div className="items">
           <div className="item">

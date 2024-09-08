@@ -188,10 +188,9 @@ const Datatabledinas = () => {
   return (
     <div id="dinas" className="datatabledinas">
       <div className="datatabledinasTitle">
-        {type.toUpperCase()}
         <Link
           to={"/" + type + "/new"}
-          style={{ textDecoration: "none", marginLeft: "1000px" }}
+          style={{ textDecoration: "none", marginRight: "50px"}}
         >
           Add New
         </Link>

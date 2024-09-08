@@ -1,5 +1,5 @@
 .navbar {
-    height: 50px;
+    height: 60px;
     border-bottom: 0.5px solid rgb(231, 228, 228);
     display: flex;
     align-items: center;
@@ -15,19 +15,10 @@
   
       .search {
         display: flex;
-        align-items: center;
-        border: 0.5px solid lightgray;
+        margin-left: 600px;
         padding: 3px;
-  
-        input {
-          border: none;
-          outline: none;
-          background: transparent;
-  
-          &::placeholder {
-            font-size: 12px;
-          }
-        }
+        font-size: 30px;
+        font-weight: bold;
       }
   
       .items {
