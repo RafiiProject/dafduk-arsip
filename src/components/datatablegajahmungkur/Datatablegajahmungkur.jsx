@@ -187,51 +187,54 @@ const Datatablegajahmungkur = () => {
 
   return (
     <div id="gajahmungkur" className="datatablegajahmungkur">
-      <div className="datatablegajahmungkurTitle">
-        {type.toUpperCase()}
-        <Link
-          to={"/" + type + "/new"}
-          style={{ textDecoration: "none", marginLeft: "1000px" }}
-        >
-          Add New
-        </Link>
-        <button
-          onClick={handlePrint}
-          style={{ padding: "5px 10px", cursor: "pointer" }}
-        >
-          Print
-        </button>
+      <div style={{display: "flex",
+        height: "30px",
+        width: "1400px",
+        padding: "30px",
+        backgroundColor: "white",
+        borderRadius: "15px",  
+        boxShadow: "5px 10px 20px rgba(0.1, 0.1, 0.1, 0.1)", /* Soft shadow for depth */
+        transition: "transform 0.3s ease-in-out"}}>
+
+        <div className="datatablegajahmungkurTitle">
+          <Link
+            to={"/" + type + "/new"}
+            style={{ textDecoration: "none", marginLeft:"1200px"}}>
+            Add New
+          </Link>
+          <button
+            onClick={handlePrint}
+            style={{ padding: "5px 10px", cursor: "pointer", marginLeft: "15px"}}
+          >
+            Print
+          </button>
+        </div>
+
+        {/* Input untuk pencarian NIK/Nama */}
+        <div style={{marginTop: "-25px", marginLeft:"-1400px", marginRight: "50px"}}>
+          <h2>Search</h2>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={handleSearch}
+            placeholder="Search by NIK or Name"
+            style={{ padding: "5px", marginBottom: "20px"}}
+          />
+        </div>
+
+        {/* Input untuk pencarian berdasarkan tanggal */}
+        <div style={{ marginTop: "-25px"}}>
+          <h2>Tanggal</h2>
+          <input
+            type="date"
+            value={searchDate}
+            onChange={handleDateSearch}
+            style={{ padding: "5px", marginBottom: "20px" }}
+          />
+        </div>
       </div>
 
-      {/* Tampilkan jumlah data keseluruhan */}
-      <div style={{ marginBottom: "20px" }}>
-        <h3>Total Data Keseluruhan: {data.length}</h3>
-      </div>
-
-      {/* Input untuk pencarian NIK/Nama */}
-      <div>
-        <h2>Search by NIK or Name</h2>
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={handleSearch}
-          placeholder="Search by NIK or Name"
-          style={{ padding: "5px", marginBottom: "20px" }}
-        />
-      </div>
-
-      {/* Input untuk pencarian berdasarkan tanggal */}
-      <div>
-        <h2>Search by Date</h2>
-        <input
-          type="date"
-          value={searchDate}
-          onChange={handleDateSearch}
-          style={{ padding: "5px", marginBottom: "20px" }}
-        />
-      </div>
-
-      <div id="tableToPrint">
+      <div id="tableToPrint" style={{marginTop:"30px"}}>
         <h1>Gajahmungkur</h1>
         
         {/* Menampilkan tanggal yang sedang ditampilkan jika ada pencarian berdasarkan tanggal */}

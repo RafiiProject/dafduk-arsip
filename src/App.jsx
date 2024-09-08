@@ -45,8 +45,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route index element={<Home />}></Route>
-            <Route path="login" element={<Login />}></Route>
+            <Route path="login" element={<NotRequireAuth><Login /></NotRequireAuth>}></Route>
+            <Route index element={<RequireAuth><Home /></RequireAuth>}></Route>
 
             <Route path="tengah">
               <Route index element={<RequireAuth><Listtengah columns={tengahColumns} /></RequireAuth>}></Route>

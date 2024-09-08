@@ -9,7 +9,7 @@ const Widget = ({ type }) => {
   const [amount, setAmount] = useState(0);           // Total entries
   const [todayAmount, setTodayAmount] = useState(0);  // Today's entries
   const [monthAmount, setMonthAmount] = useState(0);  // This month's entries
-  const navigate = useNavigate();                    // Hook for navigation
+  const navigate = useNavigate();       // Hook for navigation
 
   // Define data object that will change based on 'type'
   let data;
@@ -308,63 +308,69 @@ const Widget = ({ type }) => {
   }
 
   // Fetching the counts from Firestore based on 'type'
-    useEffect(() => {
-      const fetchData = async () => {
-        const today = new Date();
-        const year = today.getFullYear();
-        const month = today.getMonth();
-        const startOfDay = new Date(year, month, today.getDate());  // Today
-        const startOfMonth = new Date(year, month, 1);  // First day of current month
-  
-        // Query for total entries
+  useEffect(() => {
+    const fetchData = async () => {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = today.getMonth() + 1;
+      const day = today.getDate();
+
+      // Format today's date as YYYY-MM-DD
+      const todayString = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
+      console.log("Today String:", todayString); // Debugging
+
+      // Get the first day of the current month as YYYY-MM-DD
+      const startOfMonthString = `${year}-${month < 10 ? '0' + month : month}-01`;
+
+      try {
+        // Fetch total entries
         const q = query(collection(db, data.query));
         const querySnapshot = await getDocs(q);
         setAmount(querySnapshot.size);
-  
-        // Query for today's entries using date comparison
+
+        // Fetch today's entries
         const qToday = query(
           collection(db, data.query),
-          where(
-            "date",
-            "==",
-            startOfDay.toLocaleDateString() // Assuming "date" field stores the date portion only
-          )
+          where("date", "==", todayString)
         );
         const queryTodaySnapshot = await getDocs(qToday);
         setTodayAmount(queryTodaySnapshot.size);
-  
-        // Query for this month's entries using date comparison
+
+        // Fetch this month's entries
         const qMonth = query(
           collection(db, data.query),
-          where(
-            "date",
-            ">=",
-            startOfMonth.toLocaleDateString() // Assuming "date" field stores the date portion only
-          ),
-          where("date", "<=", today.toLocaleDateString()) // Today included
+          where("date", ">=", startOfMonthString),
+          where("date", "<=", todayString)
         );
         const queryMonthSnapshot = await getDocs(qMonth);
         setMonthAmount(queryMonthSnapshot.size);
-      };
+
+        // Debug: Check if the documents have correct date field
+        querySnapshot.forEach(doc => {
+          const docData = doc.data();
+          console.log("Document date:", docData.date ? docData.date : "undefined");
+        });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [data.query]);
   
-      fetchData();
-    }, [data.query]);
+  
   
     return (
       <div className="widget" onClick={() => navigate(data.navigateTo)}>
         <div className="left">
           <span className="title">{data.title}</span>
-          <span className="counter">
-            This Month: {monthAmount}
-          </span>
-          <span className="counter">Today: {todayAmount}</span>
-          <span className="link">{data.link}</span>
-        </div>
-        <div className="right">
           <div className="percentage positive">
             <h3 style={{ marginRight: "-70px" }}>Total: {amount}</h3>
           </div>
-          <div className="icon" style={{ marginTop: "-100px", marginRight: "25px" }}>
+          <span className="link">See all data</span>
+        </div>
+        <div className="right">
+          <div className="icon" style={{ marginTop: "-140px", marginRight: "-5px" }}>
             {data.icon}
           </div>
         </div>
