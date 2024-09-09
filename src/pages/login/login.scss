@@ -1,34 +1,60 @@
-.login{
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/src/assets/background-login.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-    form{
+  .login-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    form {
       display: flex;
       flex-direction: column;
       align-items: center;
 
-      input{
-        width: 200px;
-        height: 30px;
-        margin: 10px;
+      input {
+        width: 250px;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
       }
 
-      button{
-        width: 200px;
-        height: 30px;
+      button {
+        width: 250px;
+        padding: 10px;
         border: none;
         background-color: brown;
         color: white;
         font-weight: bold;
+        border-radius: 5px;
         cursor: pointer;
+        margin-top: 20px;
+        font-size: 16px;
+
+        &:hover {
+          background-color: darkred;
+        }
       }
 
-      span{
-        font-size: 12px;
+      span {
+        font-size: 14px;
         color: red;
-        margin-top: 10px;
+        margin-top: 15px;
       }
     }
+  }
 }

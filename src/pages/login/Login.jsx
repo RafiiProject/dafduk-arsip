@@ -31,6 +31,8 @@ const Login = () => {
 
   return (
     <div className="login">
+      <div className="login-container">
+        <h1>Arsip Pencetakan KTP</h1>
       <form onSubmit={handleLogin}>
         <input
           type="email"
@@ -45,6 +47,7 @@ const Login = () => {
         <button type="submit">Login</button>
         {error && <span>Wrong email or password!</span>}
       </form>
+      </div>
     </div>
   );
 };
