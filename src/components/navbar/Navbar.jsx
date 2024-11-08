@@ -10,7 +10,7 @@ const Navbar = () => {
     <div className="navbar">
       <div className="wrapper">
         <div className="search">
-          <div>SiPeta KTP</div>
+          <div>SiPEKAT</div>
           <div className="arsip">Arsip Pencetakan KTP</div>
         </div>
         <div className="items">
